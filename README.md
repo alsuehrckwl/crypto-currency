@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+# CryptoCurrency
+> coingecko api를 활용하여 가상자산 목록 및 상세 데이터를 조회 할 수 있는 토이 프로젝트 입니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Content
+1. [디렉토리](#directory)
+2. [설치 및 실행 방법](#installation)
+3. [Dependencies](#dependencies)
+4. [결과](#solution)
 
-## Available Scripts
+<h2 id="directory">
+    1. 디렉토리
+</h2>
 
-In the project directory, you can run:
+### Folder Structure
 
-### `yarn start`
+```bash
+  └── src
+      ├── @shared               # 프로젝트 전체에서 공유되어 사용되는 모듈 모음
+      │    ├── api              # axios를 사용하여 http통신을 위한 get, delete, post, put 구현체
+      │    ├── componnents      # 공통으로 사용될 컴포넌트 입니다. (ex: header, menu...)
+      │    ├── constants        # 공통으로 사용될 상수들 입니다.
+      │    ├── hooks            # 공통으로 사용될 커스텀 hooks 입니다.
+      │    ├── stores           # 공통으로 사용될 stores 입니다. (mobx)
+      │    └── util             # 공통으로 사용될 util 입니다.
+      ├── pages                 # router 기준 페이지 모듈, 사용 유무에 따라 하위폴더를 구성합니다.
+      │    └── [route]          # route path에 맞는 폴더 명입니다.
+      ├── aseets                # image와 svg같은 정적 파일을 등록하는 폴더입니다.
+      └── styles                # 공용으로 사용될 style입니다.
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h2 id="installation">
+    2. 설치 및 실행 방법
+</h2>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Front-End
+~~~javascript
+$> yarn or npm install
 
-### `yarn test`
+$> yarn start or npm run start
+~~~
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h2 id="dependencies">
+    3.Dependencies
+</h2>
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Dependency | description |
+|-----------------------|------------------------------|
+| autobind-decorator | this를 바인드 해주는 유틸 |
+| axios | 서버와통신을 위한 유틸 |
+| clsx | 컴포넌트에서 스타일에 조건을 위한 유틸 |
+| mobx | state management를 위하여 사용 |
+| mobx-react-lite | mobx를 react에서 사용하기 위하여 사용 |
+| mobx-util | mobx에서 generator함수를 사용하기 위하여 사용 |
+| styled-components | 스타일을 컴포넌트화 하기 위하여 사용 |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

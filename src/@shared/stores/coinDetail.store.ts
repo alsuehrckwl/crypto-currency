@@ -206,7 +206,7 @@ export class CoinDetailStore {
 
   @action
   onChangeCalcValue(value: string, type: string) {
-    const { detail, currentCurrency, cryptoInput } = this;
+    const { detail, currentCurrency } = this;
     const { market_data } = detail;
     const { current_price } = market_data;
     const { krw, usd } = current_price;

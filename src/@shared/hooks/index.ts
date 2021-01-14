@@ -1,3 +1,3 @@
-import { useFetch } from './useFetch/useFetch';
+import { useStore } from './useStore/useStore';
 
-export { useFetch };
+export { useStore };

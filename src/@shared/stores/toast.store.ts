@@ -6,8 +6,6 @@ export class ToastStore {
   @observable
   toasts: IToast[] = [];
 
-  constructor() {}
-
   /************************************************
    *
    * action
@@ -15,8 +13,7 @@ export class ToastStore {
    ************************************************/
   @action
   setToast(isBookmark: boolean) {
-    const { toasts } = this;
-    const id = toasts.length + 1;
+    const id = performance.now();
     const item = {
       id,
       text: `북마크를 ${isBookmark ? "해제" : "등록"} 하였습니다.`,

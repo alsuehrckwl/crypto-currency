@@ -66,7 +66,7 @@ const CoinList: React.FC<IProps> = ({
           updateBookmark={updateBookmark}
         />
       ))}
-      {viewFilter === "all" && items.length > 0 && (
+      {(!bookmarkView && viewFilter === "all" && items.length > 0)&& (
         <More onClick={moreCoins}>
           {moreLoading ? <SmallLoader /> : "더보기"}
         </More>

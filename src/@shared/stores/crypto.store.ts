@@ -65,6 +65,7 @@ export class CryptoStore {
   @action
   changeViewFilter(view: string) {
     this.viewFilter = view;
+    this.page = 1;
 
     this.getCoinList();
   }
@@ -72,6 +73,7 @@ export class CryptoStore {
   @action
   changeVsCurrency(currency: string) {
     this.vs_currency = currency;
+    this.page = 1;
 
     this.getCoinList();
   }
@@ -81,6 +83,7 @@ export class CryptoStore {
     let size = +value;
 
     this.per_page = size;
+    this.page = 1;
 
     this.getCoinList();
   }
@@ -97,6 +100,15 @@ export class CryptoStore {
 
     getAsyncLocalStorage("bookmark").then((success: any) => {
       this.bookmarks = success;
+    });
+  }
+
+  @action
+  checkBookmarkPrecess() {
+    getAsyncLocalStorage("bookmark").then((success: any) => {
+      if (success.length !== this.bookmarks.length) {
+        this.bookmarks = success
+      }
     });
   }
 
@@ -138,6 +150,8 @@ export class CryptoStore {
         params["ids"] = bookmarks.join(",");
       }
 
+      yield this.checkBookmarkPrecess();
+
       const result = yield getCoinsMarkets(params);
 
       this.list = result.map((item: ICoinStore) => new CryptoModel(item));
@@ -176,6 +190,7 @@ export class CryptoStore {
 
       const moreList = result.map((item: ICoinStore) => new CryptoModel(item));
 
+      this.page = nextPage;
       this.list = [...this.list, ...moreList];
     } catch (error) {
       console.log(error);
@@ -189,17 +204,18 @@ export class CryptoStore {
     this.loading = true;
 
     try {
-      const { vs_currency, per_page, order, page, bookmarks } = this;
+      const { vs_currency, per_page, order, bookmarks } = this;
 
       const result = yield getCoinsMarkets({
         vs_currency,
         order,
         per_page,
-        page,
+        page: 1,
         price_change_percentage: "1h,24h,7d",
         ids: bookmarks.join(","),
       });
 
+      this.page = 1;
       this.list = result.map((item: ICoinStore) => new CryptoModel(item));
     } catch (error) {
       console.log(error);

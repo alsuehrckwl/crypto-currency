@@ -14,7 +14,6 @@ import {
 } from "../CoinDetail.style";
 import { observer } from "mobx-react-lite";
 import clsx from "clsx";
-import { homedir } from "os";
 
 interface IProps {
   item: any;

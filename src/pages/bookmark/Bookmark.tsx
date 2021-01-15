@@ -5,23 +5,33 @@ import { CoinArea } from "../coins/Coin.style";
 import CoinList from "../coins/coinList/CoinList";
 
 export const Bookmark = observer(() => {
-  const store = useStore("crypto");
+  const {
+    getCoinBookmark,
+    bookmarkList,
+    loading,
+    vs_currency,
+    bookmarks,
+    updateBookmark,
+    getMoreCoins,
+    viewFilter,
+    moreLoading
+  } = useStore("crypto");
 
   React.useEffect(() => {
-    store.getCoinBookmark();
-  }, []);
+    getCoinBookmark();
+  }, [getCoinBookmark]);
 
   return (
     <CoinArea>
       <CoinList
-        item={store.bookmarkList}
-        loading={store.loading}
-        vs_currency={store.vs_currency}
-        bookmarks={store.bookmarks}
-        updateBookmark={store.updateBookmark}
-        moreCoins={store.getMoreCoins}
-        viewFilter={store.viewFilter}
-        moreLoading={store.moreLoading}
+        item={bookmarkList}
+        loading={loading}
+        vs_currency={vs_currency}
+        bookmarks={bookmarks}
+        updateBookmark={updateBookmark}
+        moreCoins={getMoreCoins}
+        viewFilter={viewFilter}
+        moreLoading={moreLoading}
         bookmarkView={true}
       />
     </CoinArea>

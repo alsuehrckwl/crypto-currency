@@ -5,11 +5,25 @@ import CoinList from "./coinList/CoinList";
 import { CoinArea, CoinSearchBar } from "./Coin.style";
 
 export const Coins = observer(() => {
-  const store = useStore("crypto");
+  const {
+    list,
+    getCoinList,
+    per_page,
+    changePerPage,
+    viewFilter,
+    changeVsCurrency,
+    changeViewFilter,
+    vs_currency,
+    loading,
+    bookmarks,
+    updateBookmark,
+    getMoreCoins,
+    moreLoading
+  } = useStore("crypto");
 
   React.useEffect(() => {
-    store.getCoinList();
-  }, []);
+    getCoinList();
+  }, [getCoinList]);
 
   return (
     <CoinArea>
@@ -17,8 +31,8 @@ export const Coins = observer(() => {
         <select
           name="viewFilter"
           id="viewFilter"
-          value={store.viewFilter}
-          onChange={(e) => store.changeViewFilter(e.target.value)}
+          value={viewFilter}
+          onChange={(e) => changeViewFilter(e.target.value)}
         >
           <option value="all">전체보기</option>
           <option value="bookmark">북마크보기</option>
@@ -26,8 +40,8 @@ export const Coins = observer(() => {
         <select
           name="vsCurrency"
           id="vsCurrency"
-          value={store.vs_currency}
-          onChange={(e) => store.changeVsCurrency(e.target.value)}
+          value={vs_currency}
+          onChange={(e) => changeVsCurrency(e.target.value)}
         >
           <option value="krw">KRW 보기</option>
           <option value="usd">USD 보기</option>
@@ -35,8 +49,8 @@ export const Coins = observer(() => {
         <select
           name="perPage"
           id="perPage"
-          value={store.per_page}
-          onChange={(e) => store.changePerPage(e.target.value)}
+          value={per_page}
+          onChange={(e) => changePerPage(e.target.value)}
         >
           <option value={10}>10개 보기</option>
           <option value={30}>30개 보기</option>
@@ -44,14 +58,14 @@ export const Coins = observer(() => {
         </select>
       </CoinSearchBar>
       <CoinList
-        item={store.list}
-        loading={store.loading}
-        vs_currency={store.vs_currency}
-        bookmarks={store.bookmarks}
-        updateBookmark={store.updateBookmark}
-        moreCoins={store.getMoreCoins}
-        viewFilter={store.viewFilter}
-        moreLoading={store.moreLoading}
+        item={list}
+        loading={loading}
+        vs_currency={vs_currency}
+        bookmarks={bookmarks}
+        updateBookmark={updateBookmark}
+        moreCoins={getMoreCoins}
+        viewFilter={viewFilter}
+        moreLoading={moreLoading}
       />
     </CoinArea>
   );

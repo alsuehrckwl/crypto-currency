@@ -1,6 +1,6 @@
 import autobind from "autobind-decorator";
-import { action, computed, observable } from "mobx";
-import { ICoinStore, ICoin } from "../../interface/coin";
+import { computed, observable } from "mobx";
+import { ICoinStore } from "../../interface/coin";
 import { makeComma } from "../../util";
 
 @autobind

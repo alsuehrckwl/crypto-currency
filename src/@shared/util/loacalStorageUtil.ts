@@ -28,15 +28,15 @@ function removeLocalStorage(key: string) {
   }
 }
 
-function clearLocalStorage() {
-  try {
-    if (typeof window !== "undefined") {
-      window.localStorage.clear();
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
+// function clearLocalStorage() {
+//   try {
+//     if (typeof window !== "undefined") {
+//       window.localStorage.clear();
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 function parseData(data: any) {
   try {

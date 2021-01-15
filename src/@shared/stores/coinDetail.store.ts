@@ -206,7 +206,7 @@ export class CoinDetailStore {
 
   @action
   onChangeCalcValue(value: string, type: string) {
-    const { detail, currentCurrency, cryptoInput } = this;
+    const { detail, currentCurrency } = this;
     const { market_data } = detail;
     const { current_price } = market_data;
     const { krw, usd } = current_price;
@@ -273,6 +273,15 @@ export class CoinDetailStore {
     });
   }
 
+  @action
+  checkBookmarkPrecess() {
+    getAsyncLocalStorage("bookmark").then((success: any) => {
+      if (success.length !== this.bookmarks.length) {
+        this.bookmarks = success
+      }
+    });
+  }
+
   /************************************************
    *
    * async action
@@ -284,6 +293,7 @@ export class CoinDetailStore {
     this.coinId = coinId;
 
     try {
+      yield this.checkBookmarkPrecess();
       const result = yield getCoinById(coinId);
 
       this.detail = result;

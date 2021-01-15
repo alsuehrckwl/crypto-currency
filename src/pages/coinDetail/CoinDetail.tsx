@@ -13,16 +13,17 @@ interface IProps {
 export const CoinDetail: React.FC<RouteComponentProps<IProps>> = observer(
   (props) => {
     const store = useStore("coinDetail");
+    const { getCoinDetail, loading } = store;
 
     React.useEffect(() => {
       const { id } = props.match.params;
 
-      store.getCoinDetail(id);
-    }, []);
+      getCoinDetail(id);
+    }, [getCoinDetail, props.match.params]);
 
     return (
       <DetailArea>
-        {store.loading ? <Loader /> : <DetailContents item={store} />}
+        {loading ? <Loader /> : <DetailContents item={store} />}
       </DetailArea>
     );
   }
